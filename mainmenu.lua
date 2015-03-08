@@ -18,8 +18,7 @@ end
 
 local button1 = widget.newButton
 {
-    left = 250,
-    top = 300,
+     
     id = "button1",
     label = "Default",
     onEvent = handleButtonEvent,
@@ -82,6 +81,11 @@ function scene:create( event )
   ]]--
 	
 	-- all objects must be added to group (e.g. self.view)
+  
+  button1.x = display.contentCenterX
+  button1.y = display.contentCenterY
+  
+  
 	sceneGroup:insert( bg )
 	sceneGroup:insert( title ) 
 end
