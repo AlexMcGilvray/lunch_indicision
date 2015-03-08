@@ -22,4 +22,16 @@ function initRestaurants()
   }
   table.insert(restaurants,rSalsaAndAgave) 
   --Phat Sandwiches 
+  rSalsaAndAgave = {
+    name = "Phat Sandwiches",
+    distanceInBlocks = 2,
+    score = 50 
+  }
+  table.insert(restaurants,rSalsaAndAgave) 
+  rSalsaAndAgave = {
+    name = "The parlour",
+    distanceInBlocks = 2,
+    score = 50 
+  }
+  table.insert(restaurants,rSalsaAndAgave) 
 end

@@ -14,18 +14,23 @@ local function handleButtonEvent( event )
     if ( "ended" == event.phase ) then 
         print( selectedRestaurant.name )
     end
-end
-
-
+end 
 
 local button1 = widget.newButton
 {
-    left = 100,
-    top = 200,
+    left = 250,
+    top = 300,
     id = "button1",
     label = "Default",
     onEvent = handleButtonEvent,
-    fontSize = 32
+    fontSize = 32,
+    shape="roundedRect",
+    width = 200,
+    height = 40,
+    cornerRadius = 2,
+    fillColor = { default={ 1, 0, 0, 1 }, over={ 1, 0.1, 0.7, 0.4 } },
+    strokeColor = { default={ 1, 0.4, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
+    strokeWidth = 4
 }
 
 
