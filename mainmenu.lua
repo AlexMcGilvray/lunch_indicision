@@ -6,13 +6,13 @@
 local widget = require( "widget" )
 local composer = require( "composer" )
 local scene = composer.newScene()
-
+require("restaurants")
 
 -- Function to handle button events
 local function handleButtonEvent( event )
- 
-    if ( "ended" == event.phase ) then
-        print( "Button was pressed and released" )
+    local selectedRestaurant = restaurants[ math.random( #restaurants ) ] 
+    if ( "ended" == event.phase ) then 
+        print( selectedRestaurant.name )
     end
 end
 
@@ -39,7 +39,7 @@ local debugText = nil
 
 function scene:create( event )
 	local sceneGroup = self.view
-	
+	initRestaurants()
 	-- Called when the scene's view does not exist.
 	-- 
 	-- INSERT code here to initialize the scene

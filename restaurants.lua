@@ -1,5 +1,3 @@
-
-
 restaurants = {}
 
 local Restaurant = {
@@ -9,14 +7,19 @@ local Restaurant = {
 }
 
 function initRestaurants()
+  --The Hub
   rTheHub = {
     name = "The Hub",
     distanceInBlocks = 1,
     score = 50 
-    }
+  }
+  table.insert(restaurants,rTheHub) 
+  --Salsa y Agave
   rSalsaAndAgave = {
     name = "Salsa y Agave",
-    distanceInBlocks = 1,
+    distanceInBlocks = 2,
     score = 50 
-    }
+  }
+  table.insert(restaurants,rSalsaAndAgave) 
+  --Phat Sandwiches 
 end
