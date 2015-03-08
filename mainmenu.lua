@@ -24,9 +24,9 @@ local button1 = widget.newButton
     onEvent = handleButtonEvent,
     fontSize = 32,
     shape="roundedRect",
-    width = 200,
-    height = 40,
-    cornerRadius = 2,
+    width = 400,
+    height = 80,
+    cornerRadius = 12,
     fillColor = { default={ 1, 0, 0, 1 }, over={ 1, 0.1, 0.7, 0.4 } },
     strokeColor = { default={ 1, 0.4, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
     strokeWidth = 4
@@ -59,7 +59,7 @@ function scene:create( event )
 	title = display.newText( "UFG Restaurant Decider", 0, 0, native.systemFont, 48 )
 	title:setFillColor( 1 )	 
 	title.x = display.contentWidth * 0.5
-	title.y = 125
+	title.y = 15
 	
   --[[
   debugText = display.newText( "UFG Restaurant Decider", 0, 0, native.systemFont, 32 )
