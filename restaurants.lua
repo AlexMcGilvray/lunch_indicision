@@ -34,4 +34,10 @@ function initRestaurants()
     score = 50 
   }
   table.insert(restaurants,rSalsaAndAgave) 
+  rAlphaSushi = {
+    name = "Alpha Sushi",
+    distanceInBlocks = 2,
+    score = 50 
+  }
+  table.insert(restaurants,rAlphaSushi) 
 end
