@@ -8,11 +8,20 @@ local composer = require( "composer" )
 local scene = composer.newScene()
 require("restaurants")
 
+local chosenRestaurant = display.newText( "UFG Restaurant Decider", 0, 0, native.systemFont, 48 )
+chosenRestaurant:setFillColor(1)	 
+chosenRestaurant.x = display.contentWidth * 0.5
+chosenRestaurant.y = 355
+chosenRestaurant.alpha = 0
+
 -- Function to handle button events
 local function handleButtonEvent( event )
     local selectedRestaurant = restaurants[ math.random( #restaurants ) ] 
     if ( "ended" == event.phase ) then 
         print( selectedRestaurant.name )
+        chosenRestaurant.text =  selectedRestaurant.name  
+        chosenRestaurant.alpha = 0
+        transition.fadeIn( chosenRestaurant, { time=500 } )
     end
 end 
 
@@ -20,15 +29,15 @@ local button1 = widget.newButton
 {
      
     id = "button1",
-    label = "Default",
+    label = "Select a restaurant",
     onEvent = handleButtonEvent,
-    fontSize = 32,
+    fontSize = 32, 
     shape="roundedRect",
     width = 400,
     height = 80,
     cornerRadius = 12,
-    fillColor = { default={ 1, 0, 0, 1 }, over={ 1, 0.1, 0.7, 0.4 } },
-    strokeColor = { default={ 1, 0.4, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
+    fillColor = { default={ .2, .2, .2, 1 }, over={ .3, 0.3, 0.3, 0.4 } },
+    strokeColor = { default={ 0.7, 0.7, 0.7, 1 }, over={ 0.7, 0.7, 0.7, 1 } },
     strokeWidth = 4
 }
 
@@ -83,10 +92,11 @@ function scene:create( event )
 	-- all objects must be added to group (e.g. self.view)
   
   button1.x = display.contentCenterX
-  button1.y = display.contentCenterY
+  button1.y = display.contentCenterY + 300
   
   
 	sceneGroup:insert( bg )
+  sceneGroup:insert( chosenRestaurant )
 	sceneGroup:insert( title ) 
 end
 
