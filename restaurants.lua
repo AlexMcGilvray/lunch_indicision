@@ -63,6 +63,14 @@ function initRestaurants()
     score = 50 
   }
   table.insert(restaurants,rHurricaneGrill) 
+  --Five guys
+  rFiveGuys= {
+    name = "Five Guys",
+    distanceInBlocks = 2,
+    score = 50 
+  }
+  table.insert(restaurants,rFiveGuys) 
+  
 end
 
 
