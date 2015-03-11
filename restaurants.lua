@@ -43,3 +43,20 @@ function initRestaurants()
   }
   table.insert(restaurants,rAlphaSushi) 
 end
+
+
+function pickRandomRestaurat()
+end
+
+--this would apply some kind of logic to reduce the likelyhood of a recently visited restaurant from being selected a second time. 
+function pickRandomHistoryWeightedRestaurant()
+end
+
+--Takes in an array of restaurants and randomly selects a restaurant
+function pickRandomRestaurantFromSet(arrayOfRestaurants)
+end
+
+--Takes in a distance structure (not yet defined) and returns a random restaurant that fits the criteria of the structure. Possibilities could be blocks distance, GPS based distance etc..
+function pickRandomRestaurantWithinDistance(distanceStructure)
+end
+
