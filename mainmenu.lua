@@ -26,8 +26,7 @@ local function handleButtonEvent( event )
 end 
 
 local button1 = widget.newButton
-{
-     
+{ 
     id = "button1",
     label = "Select a restaurant",
     onEvent = handleButtonEvent,

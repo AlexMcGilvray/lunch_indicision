@@ -42,6 +42,27 @@ function initRestaurants()
     score = 50 
   }
   table.insert(restaurants,rAlphaSushi) 
+  --Ki Issu (check the spelling on this)
+  rKiIssu = {
+    name = "Ki Issu Sushi",
+    distanceInBlocks = 2,
+    score = 50 
+  }
+  table.insert(restaurants,rKiIssu) 
+  --Hurricane Grill
+  rHurricaneGrill = {
+    name = "Hurricane Grill",
+    distanceInBlocks = 2,
+    score = 50 
+  }
+  table.insert(restaurants,rHurricaneGrill) 
+  --Earls
+  rEarls = {
+    name = "Earls",
+    distanceInBlocks = 2,
+    score = 50 
+  }
+  table.insert(restaurants,rHurricaneGrill) 
 end
 
 
@@ -61,3 +82,5 @@ end
 function pickRandomRestaurantWithinDistance(distanceStructure)
 end
 
+--other function ideas
+--weather based criteria (for instance for sunny days when you want to sit on a patio
