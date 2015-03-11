@@ -69,8 +69,7 @@ function initRestaurants()
     distanceInBlocks = 2,
     score = 50 
   }
-  table.insert(restaurants,rFiveGuys) 
-  
+  table.insert(restaurants,rFiveGuys)  
 end
 
 
