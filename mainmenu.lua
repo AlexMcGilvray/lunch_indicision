@@ -16,7 +16,7 @@ chosenRestaurant.alpha = 0
 
 -- Function to handle button events
 local function handleButtonEvent( event )
-    local selectedRestaurant = restaurants[ math.random( #restaurants ) ] 
+    local selectedRestaurant = pickRandomRestaurat()
     if ( "ended" == event.phase ) then 
         print( selectedRestaurant.name )
         chosenRestaurant.text =  selectedRestaurant.name  

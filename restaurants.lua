@@ -46,6 +46,7 @@ end
 
 
 function pickRandomRestaurat()
+  return restaurants[ math.random( #restaurants ) ] 
 end
 
 --this would apply some kind of logic to reduce the likelyhood of a recently visited restaurant from being selected a second time. 
