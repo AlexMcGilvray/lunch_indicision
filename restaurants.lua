@@ -91,3 +91,6 @@ end
 
 --other function ideas
 --weather based criteria (for instance for sunny days when you want to sit on a patio
+--diet concious choices
+
+--gaming the github streak system
