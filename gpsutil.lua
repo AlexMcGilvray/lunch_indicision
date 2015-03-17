@@ -13,8 +13,8 @@ function gpsDistanceBetween ( pos1, pos2 )
 	return distance
 end
 
-local latitude = display.newText( "-", 100, 550, native.systemFont, 16 )
-local longitude = display.newText( "-", 100, 600, native.systemFont, 16 )
+local latitude = display.newText( "-", 400, 1050, native.systemFont, 16 )
+local longitude = display.newText( "-", 400, 1100, native.systemFont, 16 )
 --local altitude = display.newText( "-", 100, 150, native.systemFont, 16 )
 --local accuracy = display.newText( "-", 100, 200, native.systemFont, 16 )
 --local speed = display.newText( "-", 100, 250, native.systemFont, 16 )
@@ -28,10 +28,10 @@ local locationHandler = function( event )
         native.showAlert( "GPS Location Error", event.errorMessage, {"OK"} )
         print( "Location error: " .. tostring( event.errorMessage ) )
     else
-        local latitudeText = string.format( '%.4f', event.latitude )
+        local latitudeText = string.format( 'latitude : %.4f', event.latitude )
         latitude.text = latitudeText
 
-        local longitudeText = string.format( '%.4f', event.longitude )
+        local longitudeText = string.format( 'longitude : %.4f', event.longitude )
         longitude.text = longitudeText
 
         --local altitudeText = string.format( '%.3f', event.altitude )

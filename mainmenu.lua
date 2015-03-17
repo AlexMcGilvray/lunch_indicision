@@ -30,11 +30,17 @@ end
 local function handleButtonEventFindClosestRestaurant( event )
     local selectedRestaurant = pickRandomRestaurat()
     if ( "ended" == event.phase ) then 
-        print( selectedRestaurant.name )
-        chosenRestaurant.text =  selectedRestaurant.name  
-        chosenRestaurant.alpha = 0
-        transition.fadeIn( chosenRestaurant, { time=500 } )
-    end
+      local closestRestaurant = nil
+      for key,value in next,restaurants,nil do 
+        if closestRestaurant == nil then
+          closestRestaurant = value
+        end 
+      end
+      chosenRestaurant.text =  closestRestaurant.name  
+      print( 'closest restaurant is ' .. closestRestaurant.name )
+      chosenRestaurant.alpha = 0
+      transition.fadeIn( chosenRestaurant, { time=500 } )
+    end 
 end
 
 local button1 = widget.newButton
@@ -56,7 +62,7 @@ local button2 = widget.newButton
 { 
     id = "button1",
     label = "Find closest restaurant",
-    onEvent = handleButtonEvent,
+    onEvent = handleButtonEventFindClosestRestaurant,
     fontSize = 32, 
     shape="roundedRect",
     width = 400,
