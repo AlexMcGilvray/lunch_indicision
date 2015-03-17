@@ -158,6 +158,9 @@ end
   title:setFillColor( titleTextEffectData.r,titleTextEffectData.r,titleTextEffectData.r)	 
 end
 
+
+
+
 -- assign the above function as an "enterFrame" listener
 Runtime:addEventListener( "enterFrame", onEveryFrame )
 ---------------------------------------------------------------------------------

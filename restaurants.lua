@@ -1,3 +1,5 @@
+require("gpsutil")
+
 restaurants = {}
 
 local Restaurant = {
