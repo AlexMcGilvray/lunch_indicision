@@ -7,6 +7,7 @@ local widget = require( "widget" )
 local composer = require( "composer" )
 local scene = composer.newScene()
 require("restaurants")
+require("gpsutil")
 
 local chosenRestaurant = display.newText( "UFG Restaurant Decider", 0, 0, native.systemFont, 48 )
 chosenRestaurant:setFillColor(1)	 
@@ -15,7 +16,7 @@ chosenRestaurant.y = 355
 chosenRestaurant.alpha = 0
 
 -- Function to handle button events
-local function handleButtonEvent( event )
+local function handleButtonEventSelectRestaurant( event )
     local selectedRestaurant = pickRandomRestaurat()
     if ( "ended" == event.phase ) then 
         print( selectedRestaurant.name )
@@ -25,10 +26,36 @@ local function handleButtonEvent( event )
     end
 end 
 
+-- Function to handle button events
+local function handleButtonEventFindClosestRestaurant( event )
+    local selectedRestaurant = pickRandomRestaurat()
+    if ( "ended" == event.phase ) then 
+        print( selectedRestaurant.name )
+        chosenRestaurant.text =  selectedRestaurant.name  
+        chosenRestaurant.alpha = 0
+        transition.fadeIn( chosenRestaurant, { time=500 } )
+    end
+end
+
 local button1 = widget.newButton
 { 
     id = "button1",
     label = "Select a restaurant",
+    onEvent = handleButtonEventSelectRestaurant,
+    fontSize = 32, 
+    shape="roundedRect",
+    width = 400,
+    height = 80,
+    cornerRadius = 12,
+    fillColor = { default={ .2, .2, .2, 1 }, over={ .3, 0.3, 0.3, 0.4 } },
+    strokeColor = { default={ 0.7, 0.7, 0.7, 1 }, over={ 0.7, 0.7, 0.7, 1 } },
+    strokeWidth = 4
+}
+
+local button2 = widget.newButton
+{ 
+    id = "button1",
+    label = "Find closest restaurant",
     onEvent = handleButtonEvent,
     fontSize = 32, 
     shape="roundedRect",
@@ -92,6 +119,9 @@ function scene:create( event )
   
   button1.x = display.contentCenterX
   button1.y = display.contentCenterY + 300
+  
+  button2.x = display.contentCenterX
+  button2.y = display.contentCenterY + 400
   
   
 	sceneGroup:insert( bg )
