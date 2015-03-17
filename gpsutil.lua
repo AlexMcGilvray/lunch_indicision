@@ -54,31 +54,4 @@ end
 
 -- Activate location listener
 Runtime:addEventListener( "location", locationHandler )
-
---[[
-currentLocation = nil
-local myMap = native.newMapView( 20, 20, 280, 360 )
-myMap.x = display.contentCenterX
-
-local function locationHandler( event )
-
-    local currentLocation = myMap:getUserLocation()
-
-    if ( currentLocation.errorCode or ( currentLocation.latitude == 0 and     currentLocation.longitude == 0 ) ) then
-        locationText.text = currentLocation.errorMessage
-
-        attempts = attempts + 1
-
-        if ( attempts > 10 ) then
-            native.showAlert( "No GPS Signal", "Can't sync with GPS.", { "Okay" } )
-        else
-            timer.performWithDelay( 1000, locationHandler )
-        end
-    else
-        locationText.text = "Current location: " .. currentLocation.latitude .. "," .. currentLocation.longitude
-        --myMap:setCenter( currentLocation.latitude, currentLocation.longitude )
-        --myMap:addMarker( currentLocation.latitude, currentLocation.longitude )
-    end
-end
-
-locationHandler() --]]
+ 
