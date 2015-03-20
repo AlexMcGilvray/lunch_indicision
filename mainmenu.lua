@@ -27,18 +27,19 @@ local function handleButtonEventSelectRestaurant( event )
 end 
 
 -- Function to handle button events
-local function handleButtonEventFindClosestRestaurant( event )
-    local selectedRestaurant = pickRandomRestaurat()
+local function handleButtonEventFindClosestRestaurant( event ) 
     if ( "ended" == event.phase ) then 
       local closestRestaurant = nil
       for key,value in next,restaurants,nil do 
         if closestRestaurant == nil then
           closestRestaurant = value
         end 
-        --if 
+        if (getDistanceFromUser(value) < getDistanceFromUser(closestRestaurant)) then
+          closestRestaurant = value
+        end
+        print( 'closest restaurant is ' .. closestRestaurant.name )
+          
       end
-      chosenRestaurant.text =  closestRestaurant.name  
-      print( 'closest restaurant is ' .. closestRestaurant.name )
       chosenRestaurant.alpha = 0
       transition.fadeIn( chosenRestaurant, { time=500 } )
     end 
