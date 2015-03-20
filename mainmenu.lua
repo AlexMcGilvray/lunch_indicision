@@ -36,10 +36,10 @@ local function handleButtonEventFindClosestRestaurant( event )
         end 
         if (getDistanceFromUser(value) < getDistanceFromUser(closestRestaurant)) then
           closestRestaurant = value
-        end
-        print( 'closest restaurant is ' .. closestRestaurant.name )
-          
+          print( 'closest restaurant is ' .. closestRestaurant.name )
+        end 
       end
+      chosenRestaurant.text =  closestRestaurant.name 
       chosenRestaurant.alpha = 0
       transition.fadeIn( chosenRestaurant, { time=500 } )
     end 
