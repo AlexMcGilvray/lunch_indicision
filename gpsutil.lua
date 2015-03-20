@@ -1,18 +1,10 @@
-
-function gpsDistanceBetween ( pos1, pos2 )
-
-	local earthRadius = 6371
-	
-	local lat1 = math.rad( pos1.latitude )
-	local lon1 = math.rad( pos1.longitude )
-	local lat2 = math.rad( pos2.latitude )
-	local lon2 = math.rad( pos2.longitude )
-	
-	local distance = math.acos( math.sin ( lat1 ) * math.sin ( lat2 ) + math.cos( lat1 ) * math.cos ( lat2 ) * math.cos( lon2 - lon1 ) ) * earthRadius;
-                  
-	return distance
-end
-
+-- **********
+-- DATA
+-- ********** 
+local myCoordinates = { 
+  latitude = 0, 
+  longitude = 0
+} 
 local latitude = display.newText( "-", 400, 1050, native.systemFont, 16 )
 local longitude = display.newText( "-", 400, 1100, native.systemFont, 16 )
 --local altitude = display.newText( "-", 100, 150, native.systemFont, 16 )
@@ -21,6 +13,30 @@ local longitude = display.newText( "-", 400, 1100, native.systemFont, 16 )
 --local direction = display.newText( "-", 100, 300, native.systemFont, 16 )
 --local time = display.newText( "-", 100, 350, native.systemFont, 16 )
 
+-- **********
+-- LOCAL FUNCTIONS
+-- ********** 
+local function gpsDistanceBetween ( pos1, pos2 ) 
+	local earthRadius = 6371 
+	local lat1 = math.rad( pos1.latitude )
+	local lon1 = math.rad( pos1.longitude )
+	local lat2 = math.rad( pos2.latitude )
+	local lon2 = math.rad( pos2.longitude ) 
+	local distance = math.acos( math.sin ( lat1 ) * math.sin ( lat2 ) + math.cos( lat1 ) * math.cos ( lat2 ) * math.cos( lon2 - lon1 ) ) * earthRadius;
+                  
+	return distance
+end 
+
+-- **********
+-- GLOBAL FUNCTIONS
+-- ********** 
+function getDistanceFromUser(restaurant)
+  return gpsDistanceBetween(myCoordinates,restaurant)
+end 
+
+-- **********
+-- EVENT CALLBACKS
+-- ********** 
 local locationHandler = function( event )
 
     -- Check for error (user may have turned off location services)
@@ -34,6 +50,8 @@ local locationHandler = function( event )
         local longitudeText = string.format( 'longitude : %.4f', event.longitude )
         longitude.text = longitudeText
 
+        myCoordinates.lat = event.latitude 
+        myCoordinates.long = event.longitude 
         --local altitudeText = string.format( '%.3f', event.altitude )
         --altitude.text = altitudeText
 
@@ -50,8 +68,10 @@ local locationHandler = function( event )
         --local timeText = string.format( '%.0f', event.time )
         --time.text = timeText
     end
-end
+end 
 
+-- **********
+-- EVENT BINDING
+-- ********** 
 -- Activate location listener
 Runtime:addEventListener( "location", locationHandler )
- 

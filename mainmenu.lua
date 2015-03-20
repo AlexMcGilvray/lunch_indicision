@@ -35,6 +35,7 @@ local function handleButtonEventFindClosestRestaurant( event )
         if closestRestaurant == nil then
           closestRestaurant = value
         end 
+        --if 
       end
       chosenRestaurant.text =  closestRestaurant.name  
       print( 'closest restaurant is ' .. closestRestaurant.name )
