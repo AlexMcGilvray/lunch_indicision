@@ -1,13 +1,21 @@
 -- **********
+-- LOCAL FUNCTION DECLARATIONS
+-- ********** 
+
+-- **********
+-- GLOBAL FUNCTION DECLARATIONS
+-- ********** 
+ 
+-- **********
 -- DATA
 -- **********  
+ 
+-- **********
+-- LOCAL FUNCTION DEFINITIONS
+-- ********** 
 
 -- **********
--- LOCAL FUNCTIONS
--- **********  
-
--- **********
--- GLOBAL FUNCTIONS
+-- GLOBAL FUNCTION DEFINITIONS
 -- **********  
 
 -- **********

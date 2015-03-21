@@ -1,4 +1,16 @@
 -- **********
+-- LOCAL FUNCTION DECLARATIONS
+-- ********** 
+local gpsDistanceBetween
+local updateGPS
+
+-- **********
+-- GLOBAL FUNCTION DECLARATIONS
+-- ********** 
+queueUpdateGPS = nil
+getDistanceFromUser = nil
+
+-- **********
 -- DATA
 -- ********** 
 local myCoordinates = { 
@@ -52,9 +64,9 @@ local locationHandler = function( event )
 end 
 
 -- **********
--- LOCAL FUNCTIONS
+-- LOCAL FUNCTION DEFINITIONS
 -- ********** 
-local function gpsDistanceBetween ( pos1, pos2 ) 
+gpsDistanceBetween = function ( pos1, pos2 ) 
 	local earthRadius = 6371 
 	local lat1 = math.rad( pos1.latitude )
 	local lon1 = math.rad( pos1.longitude )
@@ -65,17 +77,21 @@ local function gpsDistanceBetween ( pos1, pos2 )
 	return distance
 end 
  
-local function updateGPS() 
-    Runtime:removeEventListener( "location", locationHandler )    
-    Runtime:addEventListener( "location", locationHandler )     
+updateGPS = function() 
+    queueUpdateGPS()  
     -- 10 second delay to query gps
     timer.performWithDelay( 10000, updateGPS )
 end
 
 -- **********
--- GLOBAL FUNCTIONS
--- ********** 
-function getDistanceFromUser(restaurant)
+-- GLOBAL FUNCTION DEFINITIONS
+-- **********  
+queueUpdateGPS = function()
+  Runtime:removeEventListener( "location", locationHandler )    
+  Runtime:addEventListener( "location", locationHandler )   
+end
+
+getDistanceFromUser = function(restaurant)
   local distanceFromUser = gpsDistanceBetween(myCoordinates,restaurant)
   print(distanceFromUser)
   return distanceFromUser
