@@ -14,31 +14,10 @@ local longitude = display.newText( "-", 400, 1100, native.systemFont, 16 )
 --local time = display.newText( "-", 100, 350, native.systemFont, 16 )
 
 -- **********
--- LOCAL FUNCTIONS
--- ********** 
-local function gpsDistanceBetween ( pos1, pos2 ) 
-	local earthRadius = 6371 
-	local lat1 = math.rad( pos1.latitude )
-	local lon1 = math.rad( pos1.longitude )
-	local lat2 = math.rad( pos2.latitude )
-	local lon2 = math.rad( pos2.longitude ) 
-	local distance = math.acos( math.sin ( lat1 ) * math.sin ( lat2 ) + math.cos( lat1 ) * math.cos ( lat2 ) * math.cos( lon2 - lon1 ) ) * earthRadius;
-                  
-	return distance
-end 
-
--- **********
--- GLOBAL FUNCTIONS
--- ********** 
-function getDistanceFromUser(restaurant)
-  return gpsDistanceBetween(myCoordinates,restaurant)
-end 
-
--- **********
 -- EVENT CALLBACKS
 -- ********** 
 local locationHandler = function( event )
-
+    print("handling gps update")
     -- Check for error (user may have turned off location services)
     if ( event.errorCode ) then
         native.showAlert( "GPS Location Error", event.errorMessage, {"OK"} )
@@ -52,6 +31,7 @@ local locationHandler = function( event )
 
         myCoordinates.lat = event.latitude 
         myCoordinates.long = event.longitude 
+        print("location succesfully updated")
         --local altitudeText = string.format( '%.3f', event.altitude )
         --altitude.text = altitudeText
 
@@ -68,10 +48,46 @@ local locationHandler = function( event )
         --local timeText = string.format( '%.0f', event.time )
         --time.text = timeText
     end
+    
 end 
+
+-- **********
+-- LOCAL FUNCTIONS
+-- ********** 
+local function gpsDistanceBetween ( pos1, pos2 ) 
+	local earthRadius = 6371 
+	local lat1 = math.rad( pos1.latitude )
+	local lon1 = math.rad( pos1.longitude )
+	local lat2 = math.rad( pos2.latitude )
+	local lon2 = math.rad( pos2.longitude ) 
+	local distance = math.acos( math.sin ( lat1 ) * math.sin ( lat2 ) + math.cos( lat1 ) * math.cos ( lat2 ) * math.cos( lon2 - lon1 ) ) * earthRadius;
+  
+	return distance
+end 
+ 
+local function updateGPS() 
+    Runtime:removeEventListener( "location", locationHandler )    
+    Runtime:addEventListener( "location", locationHandler )     
+    -- 10 second delay to query gps
+    timer.performWithDelay( 10000, updateGPS )
+end
+
+-- **********
+-- GLOBAL FUNCTIONS
+-- ********** 
+function getDistanceFromUser(restaurant)
+  local distanceFromUser = gpsDistanceBetween(myCoordinates,restaurant)
+  print(distanceFromUser)
+  return distanceFromUser
+end  
 
 -- **********
 -- EVENT BINDING
 -- ********** 
 -- Activate location listener
 Runtime:addEventListener( "location", locationHandler )
+
+-- **********
+-- FUNCTION CALLS
+-- ********** 
+updateGPS() 
