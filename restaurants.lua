@@ -72,15 +72,6 @@ function initRestaurants()
     latitude = -123.119271
   }
   table.insert(restaurants,rHurricaneGrill) 
-  --Earls
-  rEarls = {
-    name = "Earls",
-    distanceInBlocks = 2,
-    score = 50,
-    longitude = 49.275941,
-    latitude = -123.120547
-  }
-  table.insert(restaurants,rHurricaneGrill) 
   --Five guys
   rFiveGuys= {
     name = "Five Guys",
@@ -89,7 +80,16 @@ function initRestaurants()
     longitude = 49.281261,
     latitude = -123.119167
   }
-  table.insert(restaurants,rFiveGuys)  
+  table.insert(restaurants,rFiveGuys) 
+  --Earls
+  rEarls = {
+    name = "Earls",
+    distanceInBlocks = 2,
+    score = 50,
+    longitude = 49.275941,
+    latitude = -123.120547
+  }
+  table.insert(restaurants,rHurricaneGrill)  
 end
 
 

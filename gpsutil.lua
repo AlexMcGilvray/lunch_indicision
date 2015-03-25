@@ -41,8 +41,8 @@ local locationHandler = function( event )
         local longitudeText = string.format( 'longitude : %.4f', event.longitude )
         longitude.text = longitudeText
 
-        myCoordinates.lat = event.latitude 
-        myCoordinates.long = event.longitude 
+        myCoordinates.latitude = event.latitude 
+        myCoordinates.longitude = event.longitude 
         print("location succesfully updated")
         --local altitudeText = string.format( '%.3f', event.altitude )
         --altitude.text = altitudeText

@@ -1,93 +1,42 @@
------------------------------------------------------------------------------------------
---
--- view1.lua
---
------------------------------------------------------------------------------------------
+local widget = require( "widget" )
 
-local composer = require( "composer" )
-local scene = composer.newScene()
+-- The "onRowRender" function may go here (see example under "Inserting Rows", above)
 
-function scene:create( event )
-	local sceneGroup = self.view
-	
-	-- Called when the scene's view does not exist.
-	-- 
-	-- INSERT code here to initialize the scene
-	-- e.g. add display objects to 'sceneGroup', add touch listeners, etc.
-	
-	-- create a white background to fill screen
-	local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
-	bg.anchorX = 0
-	bg.anchorY = 0
-	bg:setFillColor( 1 )	-- white
-	
-	-- create some text
-	local title = display.newText( "First View", 0, 0, native.systemFont, 32 )
-	title:setFillColor( 0 )	-- black
-	title.x = display.contentWidth * 0.5
-	title.y = 125
-	
-	local newTextParams = { text = "Loaded by the first tab's\n\"onPress\" listener\nspecified in the 'tabButtons' table", 
-						x = 0, y = 0, 
-						width = 310, height = 310, 
-						font = native.systemFont, fontSize = 14, 
-						align = "center" }
-	local summary = display.newText( newTextParams )
-	summary:setFillColor( 0 ) -- black
-	summary.x = display.contentWidth * 0.5 + 10
-	summary.y = title.y + 215
-	
-	-- all objects must be added to group (e.g. self.view)
-	sceneGroup:insert( bg )
-	sceneGroup:insert( title )
-	sceneGroup:insert( summary )
+-- Create the widget
+local tableView = widget.newTableView
+{
+    left = 200,
+    top = 200,
+    height = 330,
+    width = 300,
+    onRowRender = onRowRender,
+    onRowTouch = onRowTouch,
+    listener = scrollListener
+}
+
+-- Insert 40 rows
+for i = 1, 40 do
+
+    local isCategory = false
+    local rowHeight = 36
+    local rowColor = { default={ 1, 1, 1 }, over={ 1, 0.5, 0, 0.2 } }
+    local lineColor = { 0.5, 0.5, 0.5 }
+
+    -- Make some rows categories
+    if ( i == 1 or i == 21 ) then
+        isCategory = true
+        rowHeight = 40
+        rowColor = { default={ 0.8, 0.8, 0.8, 0.8 } }
+        lineColor = { 1, 0, 0 }
+    end
+
+    -- Insert a row into the tableView
+    tableView:insertRow(
+        {
+            isCategory = isCategory,
+            rowHeight = rowHeight,
+            rowColor = rowColor,
+            lineColor = lineColor
+        }
+    )
 end
-
-function scene:show( event )
-	local sceneGroup = self.view
-	local phase = event.phase
-	
-	if phase == "will" then
-		-- Called when the scene is still off screen and is about to move on screen
-	elseif phase == "did" then
-		-- Called when the scene is now on screen
-		-- 
-		-- INSERT code here to make the scene come alive
-		-- e.g. start timers, begin animation, play audio, etc.
-	end	
-end
-
-function scene:hide( event )
-	local sceneGroup = self.view
-	local phase = event.phase
-	
-	if event.phase == "will" then
-		-- Called when the scene is on screen and is about to move off screen
-		--
-		-- INSERT code here to pause the scene
-		-- e.g. stop timers, stop animation, unload sounds, etc.)
-	elseif phase == "did" then
-		-- Called when the scene is now off screen
-	end
-end
-
-function scene:destroy( event )
-	local sceneGroup = self.view
-	
-	-- Called prior to the removal of scene's "view" (sceneGroup)
-	-- 
-	-- INSERT code here to cleanup the scene
-	-- e.g. remove display objects, remove touch listeners, save state, etc.
-end
-
----------------------------------------------------------------------------------
-
--- Listener setup
-scene:addEventListener( "create", scene )
-scene:addEventListener( "show", scene )
-scene:addEventListener( "hide", scene )
-scene:addEventListener( "destroy", scene )
-
------------------------------------------------------------------------------------------
-
-return scene
